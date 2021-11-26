@@ -34,13 +34,13 @@ public class Road : MonoBehaviour
     {
         while (true)
         {
-            float spawnTime = Random.Range(2f, 3f);
+            float spawnTime = Random.Range(1.5f, 3f);
             var waitForSeconds = new WaitForSeconds(spawnTime);
 
             yield return waitForSeconds;
             yield return new WaitUntil(() => CanMove);
-            Car car = _carSpawner.GetCar(_startPoint.transform.position, transform.rotation, transform);
-            car.InitCar(this, _trafficLightColor, _finishPoint.transform.localPosition);
+            Car car = _carSpawner.GetCar(_startPoint.transform.position, transform.rotation);
+            car.InitCar(this, _trafficLightColor.Color, _finishPoint.transform.localPosition);
         }
     }
 

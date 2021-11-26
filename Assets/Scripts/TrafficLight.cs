@@ -6,8 +6,10 @@ public class TrafficLight : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TrafficLightCell[] _cells;
 
     private int _currentIndex;
+    
     private void Start()
     {
+        DeactivateAll();
         _cells[0].TrafficLightColor.Activate();
     }
 
@@ -28,6 +30,14 @@ public class TrafficLight : MonoBehaviour, IPointerClickHandler
                 _cells[0].TrafficLightColor.Activate();
                 _currentIndex = 0;
             }
+        }
+    }
+
+    private void DeactivateAll()
+    {
+        foreach (var cell in _cells)
+        {
+            cell.TrafficLightColor.Deactivate();
         }
     }
 }

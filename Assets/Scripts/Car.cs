@@ -25,10 +25,10 @@ public class Car : MonoBehaviour
             transform.Translate( _finishPosition * _speed * Time.deltaTime);
     }
 
-    public void InitCar(Road road, TrafficLightColor trafficLightColor, Vector3 finishPosition)
+    public void InitCar(Road road, Color color, Vector3 finishPosition)
     {
         _road = road;
-        _spriteRenderer.color = trafficLightColor.Color;
+        _spriteRenderer.color = color;
         _finishPosition = finishPosition;
     }
 

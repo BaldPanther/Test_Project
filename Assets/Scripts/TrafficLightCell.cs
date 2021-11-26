@@ -9,8 +9,28 @@ public class TrafficLightCell : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
     public TrafficLightColor TrafficLightColor => _trafficLightColor;
-    private void Start()
+    
+    private void OnEnable()
+    {
+        _trafficLightColor.ActivatedEvent += OnActivated;
+        _trafficLightColor.DeactivatedEvent += OnDeactivated;
+    }
+
+    private void OnDisable()
+    {
+        _trafficLightColor.ActivatedEvent -= OnActivated;
+        _trafficLightColor.DeactivatedEvent -= OnDeactivated;
+    }
+    
+    private void OnActivated()
     {
         _spriteRenderer.color = _trafficLightColor.Color;
+    }
+
+    private void OnDeactivated()
+    {
+        var color = _trafficLightColor.Color;
+        color.a = 0.15f;
+        _spriteRenderer.color = color;
     }
 }
